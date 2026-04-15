@@ -89,6 +89,10 @@ async function main(): Promise<void> {
 
     console.log(`[repro] [fetch] status:                ${response.status}`);
     console.log(`[repro] [fetch] x-debug-cookies:       ${debugHeader}`);
+    console.log(`[repro] [fetch] x-debug-runtime:       ${response.headers.get("x-debug-runtime")}`);
+    console.log(`[repro] [fetch] x-debug-get-set-cookie:  ${response.headers.get("x-debug-get-set-cookie")}`);
+    console.log(`[repro] [fetch] x-debug-spread-iter:   ${response.headers.get("x-debug-spread-iter")}`);
+    console.log(`[repro] [fetch] x-debug-getsetcookie:  ${response.headers.get("x-debug-getsetcookie")}`);
     console.log(`[repro] [fetch] getSetCookie().length: ${fetchSetCookies.length}`);
     for (const [index, cookie] of fetchSetCookies.entries()) {
       console.log(`[repro] [fetch]   [${index}] ${cookie}`);
