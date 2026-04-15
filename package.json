@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite dev --port 3001",
     "build": "vite build",
-    "start": "bun dist/server/server.js",
-    "repro": "bun ./scripts/repro.ts"
+    "start": "node dist/server/server.js",
+    "repro": "tsx ./scripts/repro.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "5.99.0",
@@ -18,9 +18,11 @@
     "react-dom": "19.2.5"
   },
   "devDependencies": {
+    "@types/node": "22.7.4",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.1",
+    "tsx": "4.20.3",
     "typescript": "6.0.2",
     "vite": "8.0.8"
   }

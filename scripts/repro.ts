@@ -71,9 +71,10 @@ function rawSocketPost(host: string, path: string): Promise<string> {
 
 async function main(): Promise<void> {
   console.log(`[repro] starting dev server on :${port}`);
-  const dev = spawn("bun", ["run", "dev"], {
+  const dev = spawn("npm", ["run", "dev"], {
     stdio: ["ignore", "pipe", "pipe"],
     env: { ...process.env, FORCE_COLOR: "0" },
+    shell: process.platform === "win32",
   });
   dev.stdout?.on("data", (chunk) => process.stdout.write(`[dev] ${chunk}`));
   dev.stderr?.on("data", (chunk) => process.stderr.write(`[dev] ${chunk}`));
@@ -127,7 +128,10 @@ async function main(): Promise<void> {
       console.log(`[repro] [raw]   | ${line}`);
     }
 
-    const platform = `${process.platform}/${process.arch} bun=${process.versions.bun}`;
+    const runtime = process.versions.bun
+      ? `bun=${process.versions.bun}`
+      : `node=${process.versions.node}`;
+    const platform = `${process.platform}/${process.arch} ${runtime}`;
     const expected = Number(debugHeader ?? "0");
     const wireOk = rawSetCookies.length === expected;
     const fetchOk = fetchSetCookies.length === expected;
