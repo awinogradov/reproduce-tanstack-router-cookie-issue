@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: "22.11.0"
 
-      - run: npm install --no-audit --no-fund
+      - run: npm install --no-audit --no-fund --legacy-peer-deps
 
       - name: Run reproduction
         run: npm run repro
